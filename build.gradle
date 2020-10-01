@@ -1,3 +1,4 @@
+//https://stackoverflow.com/questions/52569724/javafx-11-create-a-jar-file-with-gradle
 plugins {
     id 'java'
     id 'application'
@@ -12,14 +13,56 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+def currentOS = org.gradle.internal.os.OperatingSystem.current()
+def platform
+def production = false
+
+if (currentOS.isWindows()) {
+    platform = 'win'
+} else if (currentOS.isLinux()) {
+    platform = 'linux'
+} else if (currentOS.isMacOsX()) {
+    platform = 'mac'
 }
+dependencies {
+
+    if (production){
+        compile "org.openjfx:javafx-base:11:linux"
+        compile "org.openjfx:javafx-graphics:11:linux"
+        compile "org.openjfx:javafx-controls:11:linux"
+        compile "org.openjfx:javafx-fxml:11:linux"
+        compile "org.openjfx:javafx-base:11:win"
+        compile "org.openjfx:javafx-graphics:11:win"
+        compile "org.openjfx:javafx-controls:11:win"
+        compile "org.openjfx:javafx-fxml:11:win"
+        compile "org.openjfx:javafx-base:11:mac"
+        compile "org.openjfx:javafx-graphics:11:mac"
+        compile "org.openjfx:javafx-controls:11:mac"
+        compile "org.openjfx:javafx-fxml:11:mac"
+    }
+    else{
+        compile "org.openjfx:javafx-base:11:${platform}"
+        compile "org.openjfx:javafx-graphics:11:${platform}"
+        compile "org.openjfx:javafx-controls:11:${platform}"
+        compile "org.openjfx:javafx-fxml:11:${platform}"
+
+    }
+
+}
+
 
 javafx {
     modules = ['javafx.controls', 'javafx.base', 'javafx.fxml']
     version = '11.0.2'
-
 }
 
 mainClassName = 'com.gestor.recibos.Main'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.gestor.recibos.Main'
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
