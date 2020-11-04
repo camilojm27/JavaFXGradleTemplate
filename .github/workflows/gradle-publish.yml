@@ -22,13 +22,13 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build with Gradle
-      run: gradle build
+      run: gradle jar
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
     - name: Publish to GitHub Packages
-      run: gradle publish
-      env:
-        USERNAME: ${{ github.actor }}
-        PASSWORD: ${{ secrets.gradle-action }}
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "build/libs/*.jar"
+        token: ${{ secrets.gradle-action }}
       
