@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GradleTest:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GradleTest_jar</output-path>
+    <root id="archive" name="GradleTest.jar">
+      <element id="module-output" name="GradleTest.main" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.postgresql/postgresql/42.2.18/a0a9c1d43c7727eeaf1b729477891185d3c71751/postgresql-42.2.18.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.netbeans.external/AbsoluteLayout/RELEASE121/b6385447646b24c3aa45b48ec5eade63eba6e539/AbsoluteLayout-RELEASE121.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.5.0/2f50520c8abea66fbd8d26e481d3aef5c673b510/checker-qual-3.5.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
